@@ -1,4 +1,5 @@
 function _init()
+ init_pdata()
  set_state("menu")
 end
 

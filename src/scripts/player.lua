@@ -17,8 +17,10 @@ function update_player()
  local ty=flr(player_y/tile_size)+dy
 
  local t=get_tile(tx,ty)
- if t==t_dirt then
+ if t!=t_air then
   set_tile(tx,ty,t_air)
+  local y=tile_yield[t] or 0
+  if y>0 then add_coins(y) end
  end
 
  player_x=tx*tile_size

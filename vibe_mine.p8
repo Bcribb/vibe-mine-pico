@@ -2,10 +2,12 @@ pico-8 cartridge // http://www.pico-8.com
 version 43
 __lua__
 #include src/constants/world.lua
+#include src/constants/tiles.lua
 #include src/constants/stats.lua
 #include src/scripts/noise.lua
 #include src/scripts/chunks.lua
 #include src/scripts/player.lua
+#include src/scripts/pdata.lua
 #include src/scripts/camera.lua
 #include src/scripts/states.lua
 #include src/main.lua

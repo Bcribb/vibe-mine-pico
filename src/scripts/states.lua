@@ -45,6 +45,8 @@ function draw_incremental()
  camera()
  print("upgrades",48,50,7)
  print("press o to continue",26,70,6)
+ local s=coins_icon..pdata.coins
+ print(s,128-#s*4,1,7)
 end
 
 -- game state
@@ -79,6 +81,8 @@ function draw_game()
  spr(spr_player,player_x,player_y)
  camera()
  print(stamina_icon..stamina,1,1,7)
+ local s=coins_icon..pdata.coins
+ print(s,128-#s*4,1,7)
 end
 
 -- dispatch
