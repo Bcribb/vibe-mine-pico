@@ -1,0 +1,14 @@
+---
+description: Ensures the PICO-8 web build is up to date before every commit
+alwaysApply: true
+---
+
+Before committing any changes, always run the web export build script:
+
+```bash
+bash scripts/build-web.sh
+```
+
+Then stage the resulting `web/` files (`web/index.html`, `web/index.js`) along with the rest of the commit.
+
+If the build script fails (non-zero exit), do NOT commit. Report the error to the user and help them resolve it.
