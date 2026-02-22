@@ -23,4 +23,9 @@ function update_player()
 
  player_x=tx*tile_size
  player_y=ty*tile_size
+
+ stamina-=1
+ if stamina<=0 then
+  stamina_timer=stamina_empty_delay
+ end
 end

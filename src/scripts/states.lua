@@ -55,9 +55,18 @@ function enter_game()
  init_player()
  init_camera()
  update_chunks()
+ stamina=stamina_max
+ stamina_timer=0
 end
 
 function update_game()
+ if stamina_timer>0 then
+  stamina_timer-=1
+  if stamina_timer<=0 then
+   set_state("incremental")
+  end
+  return
+ end
  update_player()
  update_camera()
  update_chunks()
@@ -69,6 +78,7 @@ function draw_game()
  draw_world()
  spr(spr_player,player_x,player_y)
  camera()
+ print(stamina_icon..stamina,1,1,7)
 end
 
 -- dispatch
