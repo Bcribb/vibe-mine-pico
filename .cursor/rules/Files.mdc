@@ -1,5 +1,10 @@
 ---
+description: 
 alwaysApply: true
 ---
 
 We should separate code into logical blocks in files and then include them into the main p8 file.
+
+constant files should go into src/constants
+scripts should go into src/scripts
+never directly edit files in the 'web/' directory without explicit permission, using the build script is okay
