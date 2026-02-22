@@ -1,0 +1,5 @@
+---
+alwaysApply: true
+---
+
+We should separate code into logical blocks in files and then include them into the main p8 file.

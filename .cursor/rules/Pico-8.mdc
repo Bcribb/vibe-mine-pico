@@ -1,0 +1,23 @@
+---
+alwaysApply: true
+---
+
+We are using creating a game in the Pico-8 game engine. As such we should try to conform to the Pico-8 limitations as best we can namely:
+
+Display: 
+ pixels, fixed 16-color palette.
+Code Size: Max 
+ tokens (operators, variables, numbers) or 
+ characters.
+Compressed Code: 
+ bytes.
+Storage: 32KB (0x8000 bytes) per cartridge (PNG format).
+Audio: 4 channels.
+CPU: 
+ million virtual instructions per second (4M vm insts/sec), limiting complex logic per frame.
+Graphics/Map: 
+ pixel sprite sheet (
+ 
+ sprites) and a 
+ tile map.
+Numbers: Fixed-point numbers, with a positive maximum of
