@@ -1,7 +1,12 @@
 chunks={}
+tile_mods={}
 
 function chunk_key(cx,cy)
  return cx..","..cy
+end
+
+function tile_mod_key(wx,wy)
+ return wx..","..wy
 end
 
 function gen_chunk(cx,cy)
@@ -12,7 +17,10 @@ function gen_chunk(cx,cy)
   local sy=get_surface_y(wx)
   for ly=0,chunk_h-1 do
    local wy=cy*chunk_h+ly
-   if wy>=sy then
+   local mk=tile_mod_key(wx,wy)
+   if tile_mods[mk]!=nil then
+    c[lx][ly]=tile_mods[mk]
+   elseif wy>=sy then
     c[lx][ly]=t_dirt
    else
     c[lx][ly]=t_air
@@ -38,6 +46,17 @@ function get_tile(wx,wy)
  local lx=wx-cx*chunk_w
  local ly=wy-cy*chunk_h
  return c[lx] and c[lx][ly] or t_air
+end
+
+function set_tile(wx,wy,t)
+ tile_mods[tile_mod_key(wx,wy)]=t
+ local cx=flr(wx/chunk_w)
+ local cy=flr(wy/chunk_h)
+ local c=chunks[chunk_key(cx,cy)]
+ if not c then return end
+ local lx=wx-cx*chunk_w
+ local ly=wy-cy*chunk_h
+ if c[lx] then c[lx][ly]=t end
 end
 
 function update_chunks()

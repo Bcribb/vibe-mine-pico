@@ -4,6 +4,7 @@ __lua__
 #include src/constants/world.lua
 #include src/scripts/noise.lua
 #include src/scripts/chunks.lua
+#include src/scripts/player.lua
 #include src/scripts/camera.lua
 #include src/main.lua
 __gfx__

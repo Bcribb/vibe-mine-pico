@@ -6,6 +6,11 @@ function init_camera()
  cam_y=player_y-60
 end
 
+function update_camera()
+ cam_x=player_x-60
+ cam_y=player_y-60
+end
+
 function draw_world()
  local tx0=flr(cam_x/tile_size)
  local ty0=flr(cam_y/tile_size)
