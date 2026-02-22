@@ -1,6 +1,11 @@
 chunks={}
 tile_mods={}
 
+function reset_chunks()
+ chunks={}
+ tile_mods={}
+end
+
 function chunk_key(cx,cy)
  return cx..","..cy
 end

@@ -6,6 +6,7 @@ __lua__
 #include src/scripts/chunks.lua
 #include src/scripts/player.lua
 #include src/scripts/camera.lua
+#include src/scripts/states.lua
 #include src/main.lua
 __gfx__
 0000000000aaaa004445444400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
