@@ -27,7 +27,13 @@ trap 'rm -f "$TMPLINK"' EXIT
 ln -sfn "$PROJECT_ROOT" "$TMPLINK"
 
 echo "Exporting web build with: $PICO8"
-"$PICO8" -root_path "$TMPLINK" "$TMPLINK/$CART_NAME" -export "web/index.html"
+OUTPUT=$("$PICO8" -root_path "$TMPLINK" "$TMPLINK/$CART_NAME" -export "web/index.html" 2>&1)
+echo "$OUTPUT"
+
+if echo "$OUTPUT" | grep -q "please capture a label first"; then
+    echo "Error: cartridge has no label. Open in PICO-8 and press F7 during gameplay to capture one." >&2
+    exit 1
+fi
 
 if [[ -f "$WEB_DIR/index.html" && -f "$WEB_DIR/index.js" ]]; then
     echo "Build complete: $WEB_DIR/index.html + index.js"
