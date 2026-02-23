@@ -1,7 +1,7 @@
 pdata={}
 
 function init_pdata()
- pdata={coins=0}
+ pdata={coins=0,bought={}}
 end
 
 function add_coins(n)

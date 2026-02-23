@@ -16,5 +16,6 @@ t_air  = 0
 t_dirt = 1
 
 -- sprite slots
-spr_player = 1
-spr_dirt   = 2
+spr_player  = 1
+spr_dirt    = 2
+spr_upgrade = 3

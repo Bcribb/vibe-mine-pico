@@ -32,21 +32,15 @@ end
 -- incremental state
 
 function enter_incremental()
+ init_upgrades()
 end
 
 function update_incremental()
- if btnp(4) then
-  set_state("game")
- end
+ update_upgrades()
 end
 
 function draw_incremental()
- cls(0)
- camera()
- print("upgrades",48,50,7)
- print("press o to continue",26,70,6)
- local s=coins_icon..pdata.coins
- print(s,128-#s*4,1,7)
+ draw_upgrades()
 end
 
 -- game state
@@ -57,7 +51,7 @@ function enter_game()
  init_player()
  init_camera()
  update_chunks()
- stamina=stamina_max
+ stamina=calc_stamina()
  stamina_timer=0
 end
 
