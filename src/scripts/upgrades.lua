@@ -6,9 +6,16 @@ node_oy=40
 node_sp=32
 
 upg_sel=1
+upg_cx=0
+upg_cy=0
 
 function init_upgrades()
  upg_sel=1
+ local s=get_upg(upg_sel)
+ if s then
+  upg_cx=node_sx(s)+4-64
+  upg_cy=node_sy(s)+4-64
+ end
 end
 
 function get_upg(id)
@@ -106,6 +113,15 @@ function update_upgrades()
  if btnp(5) and calc_stamina()>0 then
   set_state("game")
  end
+
+ -- smooth pan toward selected node
+ local sel=get_upg(upg_sel)
+ if sel then
+  local tx=node_sx(sel)+4-64
+  local ty=node_sy(sel)+4-64
+  upg_cx+=(tx-upg_cx)*0.2
+  upg_cy+=(ty-upg_cy)*0.2
+ end
 end
 
 function node_sx(u)
@@ -118,14 +134,9 @@ end
 
 function draw_upgrades()
  cls(0)
- camera()
 
- -- title
- print("upgrades",1,1,7)
-
- -- coin count
- local cs=coins_icon..pdata.coins
- print(cs,128-#cs*4,1,7)
+ -- world-space camera for node graph
+ camera(upg_cx,upg_cy)
 
  -- connection lines
  for u in all(upgrades) do
@@ -162,7 +173,6 @@ function draw_upgrades()
   if bought or avail then
    spr(spr_upgrade,sx,sy)
   else
-   -- locked: draw dimmed
    rectfill(sx,sy,sx+7,sy+7,1)
   end
 
@@ -172,10 +182,20 @@ function draw_upgrades()
   end
  end
 
- -- info panel for selected node
+ -- screen-space hud
+ camera()
+
+ -- title
+ print("upgrades",1,1,7)
+
+ -- coin count
+ local cs=coins_icon..pdata.coins
+ print(cs,128-#cs*4,1,7)
+
+ -- info panel (bottom-left)
  local sel=get_upg(upg_sel)
  if sel then
-  local iy=62
+  local iy=98
   print(sel.name,1,iy,7)
   print(sel.desc,1,iy+8,6)
   if is_bought(sel.id) then
@@ -198,8 +218,8 @@ function draw_upgrades()
 
  -- play hint
  if calc_stamina()>0 then
-  print("x to play",80,120,6)
+  print("x to play",80,122,6)
  else
-  print("buy an upgrade!",56,120,8)
+  print("buy an upgrade!",56,122,8)
  end
 end
