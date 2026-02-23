@@ -19,7 +19,7 @@ function update_player()
  local t=get_tile(tx,ty)
  if t!=t_air then
   set_tile(tx,ty,t_air)
-  local y=tile_yield[t] or 0
+  local y=(tile_yield[t] or 0)+calc_tile_bonus()
   if y>0 then add_coins(y) end
  end
 

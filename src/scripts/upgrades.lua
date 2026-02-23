@@ -52,6 +52,16 @@ function calc_stamina()
  return s
 end
 
+function calc_tile_bonus()
+ local b=0
+ for u in all(upgrades) do
+  if is_bought(u.id) and u.stat=="tile_value" then
+   b+=u.val
+  end
+ end
+ return b
+end
+
 -- navigation: find adjacent node in pressed direction
 function upg_neighbor(dir_dx,dir_dy)
  local cur=get_upg(upg_sel)
